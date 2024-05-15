@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="container__header">
+    <h1 class="header">Поиск сотрудников в большой базе данных</h1>
+  </div>
+  <div class="container__search">
+    <div class="container__search__wrapper">
+      <mat-form-field class="example-form-field">
+        <mat-label>Поиск по резюме</mat-label>
+        <input matInput type="text" [(ngModel)]="value">
+        @if (value) {
+        <button matSuffix mat-icon-button aria-label="Clear" class="button--search" (click)="value=''">
+          <mat-icon>close</mat-icon>
+        </button>
+        }
+      </mat-form-field>
+      <button mat-flat-button color="primary" (click)="search()">Поиск</button>
+    </div>
+  </div>
+  <div class="container__main">
+    <!-- <router-outlet></router-outlet> -->
+    <div class="container__main__options">
+      <div class="container__main__options__area">
+        <h4>Регион</h4>
+        <input list="optionList" id="area_input" placeholder="Москва" (input)="onInputChange($event)"
+          [(ngModel)]="selectedValue" />
+
+        <datalist id="optionList">
+          <option *ngFor="let element of options" [value]="element.name"></option>
+        </datalist>
+
+
+        <div *ngIf="selectedValues.length > 0">
+          <ul class="area_ul">
+            <li *ngFor="let value of selectedValues">{{ value.name }} <span (click)="deleteUlValue(value.name)"
+                class="material-symbols-outlined">
+                close
+              </span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="container__main__options__gender dummy">
+        <h4>Пол</h4>
+        <mat-radio-group aria-labelledby="GenderRB" [(ngModel)]="ChosenGender" class="genderrb">
+          <mat-radio-button value="male">Мужчина</mat-radio-button>
+          <mat-radio-button value="female">Женщина</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="container__main__options__age">
+        <h4>Возраст</h4>
+        <div class="container__main__options__age__wrapper">
+          <input type="number" id="age-from" placeholder="от" [(ngModel)]="ageFrom">
+          <input type="number" id="age-to" placeholder="до" [(ngModel)]="ageTo">
+        </div>
+      </div>
+      <div class="container__main__options__salary dummy">
+        <h4>Уровень дохода</h4>
+        <div class="container__main__options__salary__wrapper">
+          <input type="number" id="salary-from" placeholder="от" [(ngModel)]="salaryFrom">
+          <input type="number" id="salary-to" placeholder="до" [(ngModel)]="salaryTo">
+        </div>
+      </div>
+      <div class="container__main__options__experience dummy">
+        <h4>Опыт работы</h4>
+        <mat-radio-group aria-labelledby="ExperienceRB" [(ngModel)]="ChosenExperience" class="ExperienceRB">
+          <mat-radio-button value="noExperience">Нет опыта</mat-radio-button>
+          <mat-radio-button value="between1And3">От 1 до 3 лет</mat-radio-button>
+          <mat-radio-button value="between3And6">От 3 до 6 лет</mat-radio-button>
+          <mat-radio-button value="moreThan6">Более 6 лет</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="container__main__options__employment dummy">
+        <h4>Тип занятости</h4>
+        <mat-radio-group aria-labelledby="EmploymentRB" [(ngModel)]="ChosenEmployment" class="employmentRB">
+          <mat-radio-button value="full">Полная занятость</mat-radio-button>
+          <mat-radio-button value="part">Частичная занятость</mat-radio-button>
+          <mat-radio-button value="probation">Стажировка</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+    <div class="container__main__content">
+      <ng-container *ngFor="let employe of employes_array">
+
+      </ng-container>
+    </div>
+  </div>
+  <div class="container__footer">
+    <div class="content"></div>
+  </div>
+
+</div>
