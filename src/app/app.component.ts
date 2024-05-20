@@ -48,10 +48,8 @@ export class AppComponent implements OnInit {
       {
         next: (result) => {
           for (const element of result[0].areas) {
-            if (element.id === '1913' || element.id === '2019') {
-              for (const it of element.areas) {
-                this.area_array.push({ id: it.id, name: it.name });
-              }
+            for (const it of element.areas) {
+              this.area_array.push({ id: it.id, name: it.name });
             }
           }
           this.options = this.area_array;
@@ -114,11 +112,19 @@ export class AppComponent implements OnInit {
       areas = 'area=113&'
     }
     let str = `https://hh.ru/search/resume?text=${text}&logic=normal&pos=full_text&exp_period=all_time&exp_company_size=any&filter_exp_period=all_time&${areas}relocation=living_or_relocation&age_from=${this.ageFrom}&age_to=${this.ageTo}&employment=${this.ChosenEmployment}&experience=${this.ChosenExperience}&gender=${this.ChosenGender}&label=only_with_gender&salary_from=${this.salaryFrom}&salary_to=${this.salaryTo}&currency_code=RUR&label=only_with_salary&order_by=relevance&search_period=0&items_on_page=50&no_magic=true&hhtmFrom=resume_search_form`;
-    console.log(str);
+    //console.log(str);
     this.get_aray(str).subscribe({
       next: (result) => {
-        this.employes_array = result;
-        console.log(result);
+        if (this.employes_array) {
+          this.employes_array = [];
+        }
+        for (const it of result) {
+          it.experience = it.experience.split(' ').slice(2).join(' ');
+          //console.log(it.experience.split(' ').slice(2));
+          //console.log(string);
+          this.employes_array.push(it);
+        }
+        //console.log(result);
       },
       error(err) {
         console.log(err);

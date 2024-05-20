@@ -89,7 +89,7 @@
                     display: flex;
                     gap: 10px;
                     input {
-                        width: 55px;
+                        width: 80px;
                         padding: 5px;
                         border-radius: 16px;
                         text-align: center;
@@ -107,6 +107,52 @@
                 .employmentRB {
                     display: flex;
                     flex-direction: column;
+                }
+            }
+        }
+    }
+    &__content {
+        margin: 25px 0px 25px 0px;
+        &__wrapper {
+            grid-column: 1/-1;
+            display: flex;
+            flex-direction: column;
+            row-gap: 25px;
+            & .employe {
+                border-radius: 32px;
+                height: 270px;
+                border: 1px solid gray;
+                padding: 23px;
+                & h4 {
+                    padding-left: 3px;
+                    font-size: 18px;
+                    margin: 5px 0px 21px 0px;
+                }
+                & .employe__info {
+                    display: flex;
+                    flex-direction: column;
+                    & span {
+                        padding: 3px;
+                    }
+                }
+                & .employe__skills {
+                    margin-top: 22px;
+                    padding-left: 3px;
+                    &__array {
+                        display: flex;
+                        column-gap: 15px;
+                        & span {
+                            text-align: center;
+                            background-color: hsl(180, 54%, 75%);
+                            padding: 8px;
+                            border-radius: 16px;
+                        }
+                    }
+                    & h4 {
+                        & span {
+                            font-weight: normal;
+                        }
+                    }
                 }
             }
         }

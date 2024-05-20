@@ -1,5 +1,5 @@
 export interface Employe {
-    job: string,
+    job_name: string,
     age: string,
     salary: number,
     gender: string,

@@ -19,6 +19,7 @@ app.get('/api/employes', async (req, res) => {
     try {
         const hhURL = req.query.urlHH;
         console.log("api get called with string:", hhURL);
+        console.log(await getData(hhURL));
         res.send(await getData(hhURL));
     } catch (error) {
         console.log(error);
@@ -114,20 +115,7 @@ async function parseProfile(data) {
 }
 
 async function getBody(siteUrl) {
-    // try {
-    //     const browser = await puppeteer.launch();
-    //     const page = await browser.newPage();
-    //     await page.goto(siteUrl);
-    //     const content = await page.content();
-    //     browser.close();
-    //     const $ = cheerio.load(content);
-    //     console.log($);
-    //     return $;
-    // } catch (error) {
-    //     throw error;
-    // }
     try {
-        console.log(chalk.blue('getBody started'));
         const response = await unirest.get(siteUrl);
         const $ = cheerio.load(response.body);
         return $;

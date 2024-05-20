@@ -77,14 +77,28 @@
         </mat-radio-group>
       </div>
     </div>
-    <div class="container__main__content">
-      <ng-container *ngFor="let employe of employes_array">
-
+  </div>
+  <div class="container__content">
+    <div class="container__content__wrapper">
+      <ng-container *ngIf="employes_array">
+        <ng-container *ngFor="let employe of employes_array">
+          <div class="employe">
+            <h4>{{employe.job_name}}, {{employe.city}}</h4>
+            <div class="employe__info">
+              <span>{{employe.age}}</span>
+              <span>{{employe.salary}} ₽</span>
+              <span>{{employe.gender}}</span>
+            </div>
+            <div class="employe__skills">
+              <h4>Опыт работы: <span>{{employe.experience}}</span></h4>
+              <h4>Ключевые навыки:</h4>
+              <div class="employe__skills__array">
+                <span *ngFor="let skill of employe.skillArray">{{skill}}</span>
+              </div>
+            </div>
+          </div>
+        </ng-container>
       </ng-container>
     </div>
   </div>
-  <div class="container__footer">
-    <div class="content"></div>
-  </div>
-
 </div>
